@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ACME Store</string>
+
+    <string name="act_splash_actv_version"><![CDATA[Android - app version: %1$s]]></string>
+    <string name="act_splash_actv_come_in">come in</string>
+    <string name="act_splash_actv_store">store</string>
+</resources>

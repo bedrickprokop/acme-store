@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="anim_duration_200">200</integer>
+    <integer name="anim_duration_250">250</integer>
+    <integer name="anim_duration_500">500</integer>
+
+    <integer name="rotation_45">45</integer>
+    <integer name="rotation_90">90</integer>
+    <integer name="rotation_180">180</integer>
+    <integer name="rotation_270">270</integer>
+    <integer name="rotation_335">335</integer>
+    <integer name="rotation_360">360</integer>
+
+</resources>
