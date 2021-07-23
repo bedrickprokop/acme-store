@@ -31,12 +31,15 @@ android {
         }
     }
 
-    /*productFlavors {
+    flavorDimensions "version"
+    productFlavors {
         mock {
+            dimension "version"
             applicationIdSuffix = ".mock"
+            versionNameSuffix "-mock"
         }
         prod {
-
+            dimension "version"
         }
     }
 
@@ -45,14 +48,14 @@ android {
         if (variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'mock') {
             variant.setIgnore(true);
         }
-    }*/
+    }
 
     sourceSets {
-        /*mock { java.srcDirs = ['src/mock/java', 'src/mock/java/'] }
-        prod { java.srcDirs = ['src/prod/java', 'src/prod/java/'] }*/
         main {
             res.srcDirs = ['src/main/res', 'src/main/res_styles', 'src/main/res_themes']
         }
+        mock { java.srcDirs = ['src/mock/java'] }
+        prod { java.srcDirs = ['src/prod/java'] }
     }
 
     // Always show the result of every unit test, even if it passes.
@@ -73,11 +76,21 @@ dependencies {
     // LIBS
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    // BASE
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
+    // ANDROIDX
+    implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
+    implementation 'androidx.core:core-ktx:1.6.0'
+
+    // KOTLIN
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+
+    // RETROFIT
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+
+    // RETROFIT
+    mockImplementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    mockImplementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
 
     // TESTS
     testImplementation "junit:junit:$versions.junit"

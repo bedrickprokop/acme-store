@@ -8,8 +8,12 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.library.BuildConfig
 import androidx.lifecycle.ViewModelProvider
 import com.acmestore.*
+import com.acmestore.Consts.FOUR_INT
+import com.acmestore.Consts.THREE_INT
+import com.acmestore.Consts.ZERO_INT
 import com.acmestore.databinding.ActSplashBinding
 import com.acmestore.viewmodel.SplashViewModel
 
