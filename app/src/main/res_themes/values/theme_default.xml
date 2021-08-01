@@ -2,13 +2,11 @@
 
     <style name="Acme" />
 
-    <style name="Acme.Theme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Theme.AppCompat.Light.DarkActionBar -->
+    <style name="Acme.Theme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-
-
     </style>
 
 </resources>

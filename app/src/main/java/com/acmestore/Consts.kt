@@ -9,6 +9,9 @@ object Consts {
     const val THREE_INT: Int = 3
     const val FOUR_INT: Int = 4
 
+    // Doubles
+    const val ZERO_DOUBLE: Double = 0.0
+
     // Strings
     const val PERIOD: String = "."
     const val COMMA: String = ","
@@ -20,4 +23,8 @@ object Consts {
 
     // Token
     const val TOKEN: String = "CD344689F90"
+
+    // Bundle's key
+    const val KEY_USER: String = "user"
+
 }

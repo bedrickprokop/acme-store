@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.ui.SplashActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -16,8 +15,8 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_splash">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/actv_app_version"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_app_version"
             style="@style/Acme.Text.Font.Smaller"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,8 +28,8 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/aciv_logo"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/img_acme"
@@ -40,20 +39,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.45" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/actv_come_in"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_come_in"
             style="@style/Acme.Text.Display.Smaller"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/act_splash_actv_come_in"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.60" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/actv_store"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_store"
             style="@style/Acme.Text.Display.Bigger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -10,6 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+// Link: Datasource x Repository: https://stackoverflow.com/a/66556192
 object UserRepository {
 
     private var userApi: UserApi = HttpApiGenerator<UserApi>().get(UserApi::class.java)
@@ -20,11 +21,13 @@ object UserRepository {
 
         call.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
-                data.postValue(response.body())
+                if (response.isSuccessful) data.postValue(response.body())
+                // TODO Exception treatment
+                else data.postValue(null)
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
-                // TODO Not yet implemented
+                // TODO Exception treatment
                 data.postValue(null)
             }
 

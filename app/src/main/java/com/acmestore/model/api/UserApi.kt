@@ -9,8 +9,8 @@ import retrofit2.http.Query
 
 interface UserApi {
 
-    @GET("user/{userId}?token={token}")
-    fun get(@Path("userId") userId: Int, @Query("token") token: String): Call<User>
+    @GET("user/{userId}/{token}")
+    fun get(@Path("userId") userId: Int, @Path("token") token: String): Call<User>
 
     @GET("user/{userId}/products?token={token}")
     fun getProducts(
