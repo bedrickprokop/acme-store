@@ -3,6 +3,8 @@ package com.acmestore.view.ui
 import android.content.Intent
 import android.view.View
 import com.acmestore.R
+import com.acmestore.view.activity.MainActivity
+import com.acmestore.view.activity.SplashActivity
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import org.junit.Assert.assertEquals

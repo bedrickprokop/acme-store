@@ -26,5 +26,4 @@ object Consts {
 
     // Bundle's key
     const val KEY_USER: String = "user"
-
 }

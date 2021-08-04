@@ -10,7 +10,7 @@
         android:theme="@style/Acme.Theme">
 
         <activity
-            android:name=".view.ui.SplashActivity"
+            android:name=".view.activity.SplashActivity"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -21,7 +21,7 @@
         </activity>
 
         <activity
-            android:name=".view.ui.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:label=""
             android:screenOrientation="portrait" />
 

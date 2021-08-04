@@ -51,4 +51,13 @@
     <dimen name="text_size_bigger">15sp</dimen>
     <dimen name="text_size_biggest">16sp</dimen>
 
+    <!-- Navigation drawer -->
+    <dimen name="height_header_navigation">160dp</dimen>
+
+    <!-- Logo -->
+    <dimen name="width_logo_1">400dp</dimen>
+    <dimen name="height_logo_1">100dp</dimen>
+    <dimen name="width_logo_2">180dp</dimen>
+    <dimen name="height_logo_2">45dp</dimen>
+
 </resources>

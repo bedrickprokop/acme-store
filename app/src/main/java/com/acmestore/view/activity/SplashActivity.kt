@@ -1,4 +1,4 @@
-package com.acmestore.view.ui
+package com.acmestore.view.activity
 
 import android.animation.AnimatorInflater
 import android.content.Intent
@@ -38,12 +38,12 @@ class SplashActivity : AppCompatActivity() {
         )
         //}
 
-        // Inflating layout and viewModel setup
+        // Inflate layout and viewModel setup
         bind = DataBindingUtil.setContentView(this, R.layout.act_splash)
         bind.viewModel = ViewModelProvider(this)[SplashViewModel::class.java]
 
         // Setup text version
-        val appVersion = getString(R.string.act_splash_actv_version)
+        val appVersion = getString(R.string.act_splash_tv_version)
         bind.tvAppVersion.text = String.format(appVersion, BuildConfig.VERSION_NAME)
 
         // Logo click action to display version
@@ -57,7 +57,6 @@ class SplashActivity : AppCompatActivity() {
                 }
             }
         }
-
         bind.viewModel?.getUserObservable()?.observe(this, getUserObserver())
     }
 
