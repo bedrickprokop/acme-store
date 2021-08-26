@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcv_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/siv_image"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:src="@drawable/img_acme"
+                app:layout_constraintBottom_toTopOf="@+id/actv_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_name"
+                style="@style/Acme.Text.Display.Smaller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/actv_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/siv_image"
+                tools:text="Product name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_price"
+                style="@style/Acme.Text.Display.Smaller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/actv_name"
+                app:layout_constraintTop_toBottomOf="@+id/siv_image"
+                tools:text="$500,00" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_promotion"
+            style="@style/Acme.Text.Display.Smaller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|top"
+            android:layout_margin="@dimen/medium_margin"
+            tools:text="Promo" />
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

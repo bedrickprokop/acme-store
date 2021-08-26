@@ -2,14 +2,17 @@
 buildscript {
 
     ext.versions = [
-            gradle      : "4.0.2",
-            kotlin      : "1.4.21",
-            lottie      : "3.3.1",
-            retrofit    : "2.7.1",
-            firebase    : "17.6.0",
-            okhttp      : "3.6.0",
-            junit       : "4.12",
-            espresso    : "3.4.0"
+            gradle  : "4.0.2",
+            kotlin  : "1.5.10",
+            androidx: [
+                    navigation: "2.1.0"
+            ],
+            lottie  : "3.3.1",
+            retrofit: "2.9.0",
+            firebase: "17.6.0",
+            okhttp  : "3.6.0",
+            junit   : "4.12",
+            espresso: "3.4.0"
     ]
 
     repositories {
@@ -20,7 +23,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.gradle"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.androidx.navigation"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

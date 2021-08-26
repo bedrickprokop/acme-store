@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.acmestore.R
 
-class MyProductsFragment : Fragment() {
+class ConfigFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.frag_my_products, container, false)
+        return inflater.inflate(R.layout.frag_config, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

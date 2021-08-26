@@ -6,8 +6,8 @@ import retrofit2.http.*
 
 interface ProductApi {
 
-    @GET("product?token={token}")
-    fun getAll(@Query("token") token: String): Call<List<Product>>
+    @GET("product/{token}")
+    fun getAll(@Path("token") token: String): Call<List<Product>>
 
     @GET("product/{productId}?token={token}")
     fun get(@Path("productId") productId: Int, @Query("token") token: String): Call<Product>

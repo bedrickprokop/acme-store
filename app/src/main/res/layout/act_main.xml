@@ -11,39 +11,19 @@
             type="com.acmestore.viewmodel.MainViewModel" />
     </data>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/dl_container"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:openDrawer="start">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fcv_container"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/mt_action"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/yellow" />
-
-            <FrameLayout
-                android:id="@+id/fl_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nv_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:headerLayout="@layout/nv_header"
-            app:menu="@menu/nv_menu" />
-
-    </androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

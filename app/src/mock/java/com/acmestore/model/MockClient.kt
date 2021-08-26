@@ -12,8 +12,9 @@ class MockClient : Interceptor {
     val GET_USER_RESPONSE =
         """{"id":1,"name":"Bedrick Prokop","email":"bedrick@mymail.com", "money": 1000000.00, "products":[]}"""
 
-    val GET_PRODUCTS_ENDPOINT = "/acmestore/product?token=CD344689F90"
-    val GET_PRODUCTS_RESPONSE = """[{"id": 1, "name": "Test", "unitPrice": 100.00, "description": "Test of description"}]"""
+    val GET_PRODUCTS_ENDPOINT = "/acmestore/product/CD344689F90"
+    val GET_PRODUCTS_RESPONSE =
+        """[{"id": 1, "name": "Test1", "unitPrice": 100.00, "description": "Test 1 of description"},{"id": 2, "name": "Test2", "unitPrice": 100.00, "description": "Test 2 of description"},{"id": 3, "name": "Test3", "unitPrice": 100.00, "description": "Test 3 of description"},{"id": 4, "name": "Test4", "unitPrice": 100.00, "description": "Test 4 of description"},{"id": 5, "name": "Test5", "unitPrice": 100.00, "description": "Test 5 of description"}]"""
 
     val CONTENT_TYPE_KEY = "content-type"
     val CONTENT_TYPE_VALUE = "application/json"

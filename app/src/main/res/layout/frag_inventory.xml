@@ -9,6 +9,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:gravity="center_horizontal|center_vertical"
-        android:text="MY PRODUCTS" />
+        android:text="Inventory" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

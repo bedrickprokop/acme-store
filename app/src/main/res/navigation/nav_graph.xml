@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.acmestore.view.fragment.HomeFragment"
+        android:label="frag_home"
+        tools:layout="@layout/frag_home">
+        <action
+            android:id="@+id/nav_home_to_product"
+            app:destination="@+id/nav_product"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_product"
+        android:name="com.acmestore.view.fragment.ProductFragment"
+        android:label="frag_product"
+        tools:layout="@layout/frag_product">
+        <argument
+            android:name="product_type"
+            app:argType="string" />
+        <argument
+            android:name="product_id"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
