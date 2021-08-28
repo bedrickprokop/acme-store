@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ACME Store</string>
+
+    <!-- Splash -->
+    <string name="act_splash_tv_version"><![CDATA[Android - versão do app: %1$s]]></string>
+    <string name="act_splash_tv_come_in">Venha</string>
+    <string name="act_splash_tv_store">loja</string>
+
+    <!-- Main -->
+
+</resources>

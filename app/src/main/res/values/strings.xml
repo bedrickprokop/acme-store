@@ -7,24 +7,5 @@
     <string name="act_splash_tv_store">store</string>
 
     <!-- Main -->
-    <string name="act_main_nv_menu_about_me_item">about me</string>
-    <string name="act_main_nv_menu_my_products_item">my products</string>
-    <string name="act_main_nv_menu_shop_item">shop</string>
-    <string name="act_main_nv_menu_settings_item">settings</string>
-    <string name="act_main_nv_tv_store">store</string>
-    <string name="act_main_nv_lbl_open_drawer">open</string>
-    <string name="act_main_nv_lbl_close_drawer">close</string>
-
-    <!-- About Me Fragment -->
-    <string name="frag_about_me_title">about me</string>
-
-    <!-- My Products Fragment -->
-    <string name="frag_my_products_title">my products</string>
-
-    <!-- Settings Fragment -->
-    <string name="frag_settings_title">settings</string>
-
-    <!-- Shop Fragment -->
-    <string name="frag_shop_title">shop</string>
 
 </resources>
