@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ACME Store</string>
+    <string name="app_name">Acme Store</string>
 
     <!-- Splash -->
     <string name="act_splash_tv_version"><![CDATA[Android - app version: %1$s]]></string>
@@ -7,5 +7,12 @@
     <string name="act_splash_tv_store">store</string>
 
     <!-- Main -->
+    <string name="frag_main_tab_invent">Invent</string>
+    <string name="frag_main_tab_shop">Shop</string>
+    <string name="frag_main_tab_config">Config</string>
+
+    <!-- Product -->
+    <string name="item_product_list_price_text"><![CDATA[Price: $%1$s]]></string>
+    <string name="frag_product_button_purchase">Purchase</string>
 
 </resources>

@@ -14,7 +14,7 @@ class MockClient : Interceptor {
 
     val GET_PRODUCTS_ENDPOINT = "/acmestore/product/CD344689F90"
     val GET_PRODUCTS_RESPONSE =
-        """[{"id": 1, "name": "Test1", "unitPrice": 100.00, "description": "Test 1 of description"},{"id": 2, "name": "Test2", "unitPrice": 100.00, "description": "Test 2 of description"},{"id": 3, "name": "Test3", "unitPrice": 100.00, "description": "Test 3 of description"},{"id": 4, "name": "Test4", "unitPrice": 100.00, "description": "Test 4 of description"},{"id": 5, "name": "Test5", "unitPrice": 100.00, "description": "Test 5 of description"}]"""
+        """[{"id": 1, "name": "Disintegrating Pistol", "unitPrice": 100.00, "description": "Disintegrating Pistol"},{"id": 2, "name": "Super Speed Vitamins", "unitPrice": 55.10, "description": "Super Speed Vitamins"},{"id": 3, "name": "Jet Propelled Tennis Shoes Fleet Foot", "unitPrice": 988.90, "description": "Jet Propelled Tennis Shoes Fleet Foot"},{"id": 4, "name": "Glass Cutter", "unitPrice": 32.01, "description": "Glass Cutter"}]"""
 
     val CONTENT_TYPE_KEY = "content-type"
     val CONTENT_TYPE_VALUE = "application/json"

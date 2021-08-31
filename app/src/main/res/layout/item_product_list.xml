@@ -5,57 +5,51 @@
 
     <data />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcv_container"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/siv_image"
+            android:layout_width="@dimen/item_product_image_height"
+            android:layout_height="@dimen/item_product_image_height"
+            android:layout_margin="@dimen/smallest_margin"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_disintegrating_pistol"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/siv_image"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:src="@drawable/img_acme"
-                app:layout_constraintBottom_toTopOf="@+id/actv_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_name"
+            style="@style/Acme.Text.Font.Bigger"
+            android:layout_width="@dimen/no_value"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/smallest_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:maxLines="2"
+            app:layout_constraintBottom_toTopOf="@+id/mtv_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/siv_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Disintegrating pistol" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/actv_name"
-                style="@style/Acme.Text.Display.Smaller"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/actv_price"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/siv_image"
-                tools:text="Product name" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/actv_price"
-                style="@style/Acme.Text.Display.Smaller"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/actv_name"
-                app:layout_constraintTop_toBottomOf="@+id/siv_image"
-                tools:text="$500,00" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/actv_promotion"
-            style="@style/Acme.Text.Display.Smaller"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_price"
+            style="@style/Acme.Text.Font.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|top"
-            android:layout_margin="@dimen/medium_margin"
-            tools:text="Promo" />
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/smallest_margin"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@+id/siv_image"
+            app:layout_constraintTop_toBottomOf="@+id/mtv_name"
+            tools:text="Price: $522,40" />
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

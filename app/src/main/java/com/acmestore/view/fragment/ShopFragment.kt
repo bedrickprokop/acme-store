@@ -12,8 +12,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acmestore.R
 import com.acmestore.databinding.FragShopBinding
+import com.acmestore.extensions.dimenToPx
 import com.acmestore.model.entity.Product
 import com.acmestore.view.adapter.ProductListAdapter
+import com.acmestore.view.adapter.SpaceDecoration
 import com.acmestore.viewmodel.ShopViewModel
 
 class ShopFragment : Fragment() {
@@ -33,12 +35,11 @@ class ShopFragment : Fragment() {
         // bind.lifecycleOwner = this
 
         bind.rvProducts.layoutManager = LinearLayoutManager(requireActivity())
+        bind.rvProducts.addItemDecoration(SpaceDecoration(R.dimen.smaller_margin.dimenToPx(context)))
         adapter = ProductListAdapter(requireActivity()) {
-            // TODO adjust type of product
             findNavController().navigate(
-                HomeFragmentDirections.navHomeToProduct(
-                    "", it.id.toString()
-                )
+                HomeFragmentDirections.navHomeToProduct(it.id.toString())
+
                 /*val bundle = Bundle()
                 bundle.putString("product_type", "")
                 bundle.putString("product_id", "")

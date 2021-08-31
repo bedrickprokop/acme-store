@@ -24,8 +24,7 @@ private val TAB_TITLES = mapOf(
     INDEX_CONFIG to "config"
 )
 
-//This short syntax for the fragment creation is enabled by the androidx.navigation:navigation-fragment-ktx dependency.
-// It's a nice improvement compared to overwriting the onCreate method.
+// Short syntax for fragment creation. Enabled by androidx.navigation:navigation-fragment-ktx dependency
 class HomeFragment : Fragment(R.layout.frag_home) {
 
     private lateinit var viewPager: ViewPager2
@@ -38,11 +37,11 @@ class HomeFragment : Fragment(R.layout.frag_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val toolbar: Toolbar = view.findViewById(R.id.toolbar)
+        val toolbar: Toolbar = view.findViewById(R.id.mt_toolbar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
 
-        val tabLayout: TabLayout = view.findViewById(R.id.tabs)
-        viewPager = view.findViewById(R.id.view_pager)
+        val tabLayout: TabLayout = view.findViewById(R.id.tl_tabs)
+        viewPager = view.findViewById(R.id.vp_pager)
         viewPager.adapter = TabsAdapter(childFragmentManager, lifecycle)
 
         // Connect the tabs and view pager2

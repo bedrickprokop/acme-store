@@ -30,9 +30,9 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_logo"
-            android:layout_width="@dimen/width_logo_1"
-            android:layout_height="@dimen/height_logo_1"
-            android:src="@drawable/img_acme"
+            android:layout_width="@dimen/size_logo_splash"
+            android:layout_height="@dimen/size_logo_splash"
+            android:src="@drawable/img_large_acme_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,11 +50,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.60" />
+            app:layout_constraintVertical_bias="0.65"
+            tools:visibility="visible" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_store"
-            style="@style/Acme.Text.Display.Bigger"
+            style="@style/Acme.Text.Display.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/medium_margin"

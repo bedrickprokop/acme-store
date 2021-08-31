@@ -1,5 +1,6 @@
 package com.acmestore.model.entity
 
+// TODO convert product object to parcelable
 class Product(
     val id: Int,
     val name: String,

@@ -6,7 +6,7 @@
         android:propertyName="textColor"
         android:repeatCount="-1"
         android:repeatMode="reverse"
-        android:valueFrom="@color/red"
-        android:valueTo="@color/green" />
+        android:valueFrom="@android:color/black"
+        android:valueTo="@android:color/white" />
 
 </set>

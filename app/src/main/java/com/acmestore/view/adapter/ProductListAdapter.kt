@@ -31,10 +31,12 @@ class ProductListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = getItem(position)
-        holder.bind.mcvContainer.setOnClickListener { listener(product) }
-        holder.bind.actvName.text = product.name
-        holder.bind.actvPrice.text = product.unitPrice.toString()
+        holder.bind.clContainer.setOnClickListener { listener(product) }
+        holder.bind.mtvName.text = product.name
+        holder.bind.mtvPrice.text =
+            context.getString(R.string.item_product_list_price_text, product.unitPrice.toString())
 
+        // TODO load image from url and set promotion text
         //holder.bind.actvPromotion.text =
         //holder.bind.sivImage =
     }
