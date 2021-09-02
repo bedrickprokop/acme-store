@@ -13,6 +13,7 @@
 
     <!-- Product -->
     <string name="item_product_list_price_text"><![CDATA[Price: $%1$s]]></string>
-    <string name="frag_product_button_purchase">Purchase</string>
+    <string name="frag_product_button_buy">Buy</string>
+    <string name="frag_product_button_sell">Sell</string>
 
 </resources>

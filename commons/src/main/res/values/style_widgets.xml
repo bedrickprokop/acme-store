@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Acme.Button" />
+
+    <style name="Acme.Button.Primary" parent="Widget.MaterialComponents.Button" />
+
+    <style name="Acme.Button.Primary.Buy">
+        <item name="android:background">@drawable/bg_button_primary_buy</item>
+        <item name="android:textAppearance">@style/Acme.Button.Text</item>
+    </style>
+
+    <style name="Acme.Button.Primary.Sell">
+        <item name="android:background">@drawable/bg_button_primary_sell</item>
+        <item name="android:textAppearance">@style/Acme.Button.Text</item>
+    </style>
+
+</resources>

@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
@@ -53,10 +53,12 @@ android {
 
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res', 'src/main/res_styles', 'src/main/res_themes']
+            res.srcDirs = ['src/main/res', 'src/main/res_themes']
+            java.srcDirs = ['src/main/java', 'src/main/kotlin']
         }
-        mock { java.srcDirs = ['src/mock/java'] }
-        prod { java.srcDirs = ['src/prod/java'] }
+        test { java.srcDirs = ['src/test/java', 'src/test/kotlin'] }
+        mock { java.srcDirs = ['src/mock/java', 'src/mock/kotlin'] }
+        prod { java.srcDirs = ['src/prod/java', 'src/prod/kotlin'] }
     }
 
     // Always show the result of every unit test, even if it passes.
@@ -89,7 +91,7 @@ dependencies {
 
     // LIBS
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation project(':utils')
+    implementation project(':commons')
 
     // KOTLIN
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"

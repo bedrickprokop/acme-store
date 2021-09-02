@@ -1,56 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="no_value">0dp</dimen>
-
-    <!-- Margin -->
-    <dimen name="smallest_margin2">2dp</dimen>
-    <dimen name="smallest_margin">4dp</dimen>
-    <dimen name="smaller_margin">8dp</dimen>
-    <dimen name="small_margin">12dp</dimen>
-    <dimen name="medium_margin">16dp</dimen>
-    <dimen name="big_margin">20dp</dimen>
-    <dimen name="bigger_margin">24dp</dimen>
-    <dimen name="biggest_margin">28dp</dimen>
-    <dimen name="biggest_margin2">32dp</dimen>
-    <dimen name="biggest_margin3">36dp</dimen>
-
-    <!-- Padding -->
-    <dimen name="smallest_padding2">@dimen/smallest_margin2</dimen>
-    <dimen name="smallest_padding">@dimen/smallest_margin</dimen>
-    <dimen name="smaller_padding">@dimen/smaller_margin</dimen>
-    <dimen name="small_padding">@dimen/small_margin</dimen>
-    <dimen name="medium_padding">@dimen/medium_margin</dimen>
-    <dimen name="big_padding">@dimen/big_margin</dimen>
-    <dimen name="bigger_padding">@dimen/bigger_margin</dimen>
-    <dimen name="biggest_padding">@dimen/biggest_margin</dimen>
-    <dimen name="biggest_padding2">@dimen/biggest_margin2</dimen>
-
-    <!-- Radius -->
-    <dimen name="smallest_radius">5dp</dimen>
-    <dimen name="smaller_radius">10dp</dimen>
-    <dimen name="small_radius">15dp</dimen>
-    <dimen name="medium_radius">20dp</dimen>
-
-    <!-- Elevation -->
-    <dimen name="smallest_elevation">2dp</dimen>
-    <dimen name="smaller_elevation">4dp</dimen>
-    <dimen name="small_elevation">6dp</dimen>
-    <dimen name="medium_elevation">8dp</dimen>
-    <dimen name="big_elevation">10dp</dimen>
-    <dimen name="bigger_elevation">12dp</dimen>
-    <dimen name="biggest_elevation">14dp</dimen>
-    <dimen name="biggest_elevation2">16dp</dimen>
-
-    <!-- Text Size -->
-    <dimen name="text_size_smallest">10sp</dimen>
-    <dimen name="text_size_smaller">11sp</dimen>
-    <dimen name="text_size_small">12sp</dimen>
-    <dimen name="text_size_medium">13sp</dimen>
-    <dimen name="text_size_big">14sp</dimen>
-    <dimen name="text_size_bigger">15sp</dimen>
-    <dimen name="text_size_biggest">16sp</dimen>
-
     <!-- Logo -->
     <dimen name="size_logo_splash">300dp</dimen>
 
@@ -59,4 +9,5 @@
 
     <!-- Product -->
     <dimen name="product_image_height">220dp</dimen>
+
 </resources>

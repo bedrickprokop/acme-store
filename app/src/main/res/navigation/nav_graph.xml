@@ -22,8 +22,11 @@
         android:label="frag_product"
         tools:layout="@layout/frag_product">
         <argument
-            android:name="product_id"
-            app:argType="string" />
+            android:name="product"
+            app:argType="com.acmestore.model.entity.Product" />
+        <argument
+            android:name="operation"
+            app:argType="com.acmestore.view.fragment.Operation" />
     </fragment>
 
 </navigation>
