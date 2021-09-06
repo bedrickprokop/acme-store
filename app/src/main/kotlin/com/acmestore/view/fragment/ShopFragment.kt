@@ -22,7 +22,14 @@ import com.acmestore.viewmodel.ShopViewModel
 class ShopFragment : Fragment() {
 
     private lateinit var bind: FragShopBinding
-    private lateinit var adapter: ProductListAdapter
+
+    private val adapter: ProductListAdapter by lazy {
+        ProductListAdapter(requireActivity()) {
+            findNavController().navigate(
+                HomeFragmentDirections.navHomeToProduct(it, ProductOperation.ADD_CART)
+            )
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,11 +49,6 @@ class ShopFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         bind.rvProducts.layoutManager = LinearLayoutManager(requireActivity())
         bind.rvProducts.addItemDecoration(SpaceDecoration(R.dimen.smaller_margin.dimenToPx(context)))
-        adapter = ProductListAdapter(requireActivity()) {
-            findNavController().navigate(
-                HomeFragmentDirections.navHomeToProduct(it, ProductOperation.ADD_CART)
-            )
-        }
         bind.rvProducts.adapter = adapter
     }
 

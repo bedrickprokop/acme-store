@@ -9,11 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.acmestore.Consts
 import com.acmestore.R
 import com.acmestore.databinding.FragHomeBinding
-import com.acmestore.model.entity.Product
 import com.acmestore.view.vo.ProductOperation
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
@@ -29,17 +29,13 @@ private val TAB_TITLES = mapOf(
     INDEX_CONFIG to "config"
 )
 
-// TODO Test: short syntax for fragment creation. Enabled by androidx.navigation:navigation-fragment-ktx dependency
-class HomeFragment : Fragment(R.layout.frag_home) {
+class HomeFragment : Fragment() {
 
     private lateinit var bind: FragHomeBinding
-    private var product: Product? = null
-    private var resultOperation: ProductOperation? = null
+    private val args: HomeFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        product = arguments?.getParcelable(Consts.KEY_PRODUCT)
-        resultOperation = arguments?.getParcelable(Consts.KEY_RESULT_OPERATION)
     }
 
     override fun onCreateView(
@@ -78,9 +74,9 @@ class HomeFragment : Fragment(R.layout.frag_home) {
     }
 
     private fun showMessage() {
-        product?.let {
+        args.product?.let {
             var message: String = Consts.EMPTY
-            when (resultOperation) {
+            when (args.resultOperation) {
                 ProductOperation.ADD_CART -> message =
                     getString(R.string.frag_home_operation_shopping_cart_message)
                 ProductOperation.BUY -> {
@@ -91,7 +87,7 @@ class HomeFragment : Fragment(R.layout.frag_home) {
             }
             Snackbar.make(
                 bind.clContainer,
-                String.format(message, product?.name),
+                String.format(message, args.product?.name),
                 Snackbar.LENGTH_SHORT
             ).show()
         }

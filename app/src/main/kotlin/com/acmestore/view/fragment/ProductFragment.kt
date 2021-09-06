@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.acmestore.Consts.KEY_DESIRED_OPERATION
-import com.acmestore.Consts.KEY_PRODUCT
+import androidx.navigation.fragment.navArgs
 import com.acmestore.R
 import com.acmestore.databinding.FragProductBinding
 import com.acmestore.model.entity.Product
@@ -19,17 +18,13 @@ import com.acmestore.viewmodel.ProductViewModel
 
 class ProductFragment : Fragment() {
 
-    //TODO test with this private val args: ProductFragmentArgs by navArgs()
     private lateinit var bind: FragProductBinding
-    private var product: Product? = null
-    private var desiredOperation: ProductOperation? = null
+    private val args: ProductFragmentArgs by navArgs()
 
     // Here you can assign variables get intent extras and anything else that doesn't involve the
     // View hierarchy(non-graphical initialisations)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        product = arguments?.getParcelable(KEY_PRODUCT)
-        desiredOperation = arguments?.getParcelable(KEY_DESIRED_OPERATION)
     }
 
     // Here you can assign your View variables and do any graphical initializations
@@ -72,31 +67,31 @@ class ProductFragment : Fragment() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
             setDisplayShowTitleEnabled(false)
-            title = product?.name
+            title = args.product.name
         }
     }
 
     private fun setupView() {
-        bind.actvTitle.text = product?.name
-        bind.actvName.text = product?.name
-        bind.actvDescription.text = product?.description
+        bind.actvTitle.text = args.product.name
+        bind.actvName.text = args.product.name
+        bind.actvDescription.text = args.product.description
         // TODO add a money mask here
-        bind.actvPrice.text = product?.unitPrice.toString()
+        bind.actvPrice.text = args.product.unitPrice.toString()
 
-        when (desiredOperation) {
+        when (args.actionOperation) {
             ProductOperation.ADD_CART -> {
                 bind.acbAddCart.visibility = View.VISIBLE
                 bind.acbAddCart.setOnClickListener {
 
                     // TODO add current user to product
-                    product?.owner = User(
+                    args.product.owner = User(
                         1,
                         "Bedrick Prokop",
                         "bedrick@mymail.com",
                         1000000.00,
                         arrayListOf()
                     )
-                    bind.viewModel?.addToCartObservable(product!!)
+                    bind.viewModel?.addToCartObservable(args.product)
                         ?.observe(requireActivity(), addToCartObserver())
                 }
             }

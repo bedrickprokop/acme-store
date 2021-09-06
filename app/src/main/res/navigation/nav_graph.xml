@@ -12,10 +12,12 @@
         tools:layout="@layout/frag_home">
         <argument
             android:name="product"
+            android:defaultValue="@null"
             app:argType="com.acmestore.model.entity.Product"
             app:nullable="true" />
         <argument
             android:name="resultOperation"
+            android:defaultValue="@null"
             app:argType="com.acmestore.view.vo.ProductOperation"
             app:nullable="true" />
         <action
@@ -38,7 +40,9 @@
         <action
             android:id="@+id/nav_product_to_home"
             app:destination="@+id/nav_home"
-            app:enterAnim="@anim/fade_in" />
+            app:enterAnim="@anim/fade_in"
+            app:popUpTo="@+id/nav_home"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>
