@@ -11,25 +11,24 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
+import org.mockito.Mockito
 
 @RunWith(AndroidJUnit4::class)
-class SplashViewModelTest : TestCase() {
+class ShopViewModelTest : TestCase() {
 
     @get: Rule
     val rule: TestRule = InstantTaskExecutorRule()
 
-    private lateinit var splashViewModel: SplashViewModel
+    private lateinit var shopViewModel: ShopViewModel
 
     @Before
     public override fun setUp() {
-        splashViewModel = SplashViewModel()
+        shopViewModel = ShopViewModel()
     }
 
     @Test
-    fun getUserTest() {
-        splashViewModel.getUserObservable().observe(getLifecycleOwner(), {
+    public fun getAllProducts() {
+        shopViewModel.getAllProductsObservable().observe(getLifecycleOwner(), {
             assertNotNull(it)
         })
     }
@@ -37,10 +36,10 @@ class SplashViewModelTest : TestCase() {
     // Link: Mock lifecycle without Robolectric: https://stackoverflow.com/a/59613753
     // Link: https://gist.github.com/lvsecoto/a68b5feecf1f5e7eba418311009338cd
     private fun getLifecycleOwner(): LifecycleOwner {
-        val owner = mock(LifecycleOwner::class.java)
+        val owner = Mockito.mock(LifecycleOwner::class.java)
         val lifecycle = LifecycleRegistry(owner)
         lifecycle.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
-        `when`(owner.lifecycle).thenReturn(lifecycle)
+        Mockito.`when`(owner.lifecycle).thenReturn(lifecycle)
         return owner
     }
 }

@@ -4,9 +4,11 @@ import android.graphics.Rect
 import android.view.View
 import androidx.annotation.IntRange
 import androidx.recyclerview.widget.RecyclerView
+import com.acmestore.Consts.ONE_INT
+import com.acmestore.Consts.ZERO_LONG
 
 class SpaceDecoration(
-    @IntRange(from = 0) private val size: Int
+    @IntRange(from = ZERO_LONG) private val size: Int
 ) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
@@ -18,7 +20,7 @@ class SpaceDecoration(
         val position = parent.getChildLayoutPosition(view)
         val adapter = parent.adapter
         if (adapter != null) {
-            val lastPosition = adapter.itemCount.minus(1)
+            val lastPosition = adapter.itemCount.minus(ONE_INT)
             if (position < lastPosition) outRect.bottom = size
         }
     }

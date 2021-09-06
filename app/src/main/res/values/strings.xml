@@ -11,9 +11,13 @@
     <string name="frag_main_tab_shop">Shop</string>
     <string name="frag_main_tab_config">Config</string>
 
+    <!-- Home -->
+    <string name="frag_home_operation_shopping_cart_message"><![CDATA[Product \"%1$s\ added to shopping cart"]]></string>
+    <string name="frag_home_operation_sell_message"><![CDATA[Product \"%1$s\ successfully sold"]]></string>
+
     <!-- Product -->
     <string name="item_product_list_price_text"><![CDATA[Price: $%1$s]]></string>
-    <string name="frag_product_button_buy">Buy</string>
+    <string name="frag_product_button_add_cart">Add to cart</string>
     <string name="frag_product_button_sell">Sell</string>
 
 </resources>

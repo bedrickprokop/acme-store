@@ -11,6 +11,7 @@ class SplashViewModel : ViewModel() {
     private val userRepository: UserRepository = UserRepository
 
     fun getUserObservable(): LiveData<User> {
+        // TODO
         return userRepository.get(
             User(
                 1,

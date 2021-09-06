@@ -17,9 +17,7 @@ object UserRepository {
 
     fun get(user: User, token: String): LiveData<User> {
         val data = MutableLiveData<User>()
-        val call = userApi.get(user.id, token)
-
-        call.enqueue(object : Callback<User> {
+        userApi.get(user.id, token).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) data.postValue(response.body())
                 // TODO Exception treatment
@@ -37,9 +35,7 @@ object UserRepository {
 
     fun getProducts(user: User, token: String): LiveData<List<Product>> {
         val data = MutableLiveData<List<Product>>()
-        val call = userApi.getProducts(user.id, token)
-
-        call.enqueue(object : Callback<List<Product>> {
+        userApi.getProducts(user.id, token).enqueue(object : Callback<List<Product>> {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
                 data.postValue(response.body())
             }

@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/siv_image"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/aciv_image"
             android:layout_width="@dimen/item_product_image_height"
             android:layout_height="@dimen/item_product_image_height"
             android:layout_margin="@dimen/smallest_margin"
@@ -22,8 +22,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_name"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_name"
             style="@style/Acme.Text.Font.Bigger"
             android:layout_width="@dimen/no_value"
             android:layout_height="wrap_content"
@@ -31,23 +31,23 @@
             android:layout_marginTop="@dimen/smallest_margin"
             android:layout_marginEnd="@dimen/medium_margin"
             android:maxLines="2"
-            app:layout_constraintBottom_toTopOf="@+id/mtv_price"
+            app:layout_constraintBottom_toTopOf="@+id/actv_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@+id/siv_image"
+            app:layout_constraintStart_toEndOf="@+id/aciv_image"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Disintegrating pistol" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_price"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_price"
             style="@style/Acme.Text.Font.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/medium_margin"
             android:layout_marginTop="@dimen/smallest_margin"
             app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintStart_toEndOf="@+id/siv_image"
-            app:layout_constraintTop_toBottomOf="@+id/mtv_name"
+            app:layout_constraintStart_toEndOf="@+id/aciv_image"
+            app:layout_constraintTop_toBottomOf="@+id/actv_name"
             tools:text="Price: $522,40" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

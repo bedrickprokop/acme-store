@@ -5,8 +5,8 @@
     <color name="colorPrimaryDark">@color/red</color>
     <color name="colorAccent">@color/white</color>
 
+    <color name="black">@android:color/black</color>
     <color name="white">@android:color/white</color>
-    <color name="red">#EE1033</color>
     <color name="orange_1">#ec9a53</color>
     <color name="orange_2">#ec7000</color>
     <color name="yellow_1">#F8f3aa</color>
@@ -31,5 +31,13 @@
     <color name="green_dark">#19887a</color>
     <color name="green_darker">#0e5e55</color>
     <color name="green_darkest">#00574B</color>
+
+    <!-- Pallet Reds -->
+    <color name="red_lightest">#c21808</color>
+    <color name="red_light">#af1607</color>
+    <color name="red">#9b1306</color>
+    <color name="red_dark">#881106</color>
+    <color name="red_darker">#740e05</color>
+    <color name="red_darkest">#4c0001</color>
 
 </resources>

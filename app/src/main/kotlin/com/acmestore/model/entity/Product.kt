@@ -10,5 +10,5 @@ data class Product(
     val unitPrice: Double,
     val description: String?,
     val pictureUrl: String?,
-    val owner: User?
+    var owner: User?
 ) : Parcelable

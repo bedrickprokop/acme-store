@@ -9,6 +9,9 @@ object Consts {
     const val THREE_INT: Int = 3
     const val FOUR_INT: Int = 4
 
+    // Longs
+    const val ZERO_LONG: Long = 0
+
     // Doubles
     const val ZERO_DOUBLE: Double = 0.0
 
@@ -27,5 +30,6 @@ object Consts {
     // Bundle's key
     const val KEY_USER: String = "user"
     const val KEY_PRODUCT: String = "product"
-    const val KEY_OPERATION: String = "operation"
+    const val KEY_DESIRED_OPERATION: String = "actionOperation"
+    const val KEY_RESULT_OPERATION: String = "resultOperation"
 }

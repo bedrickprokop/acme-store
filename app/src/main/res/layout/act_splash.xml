@@ -15,8 +15,8 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_splash">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_app_version"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_app_version"
             style="@style/Acme.Text.Font.Smaller"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,8 +28,8 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_logo"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/aciv_logo"
             android:layout_width="@dimen/size_logo_splash"
             android:layout_height="@dimen/size_logo_splash"
             android:src="@drawable/img_large_acme_logo"
@@ -39,8 +39,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.45" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_come_in"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_come_in"
             style="@style/Acme.Text.Display.Smaller"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,13 +53,12 @@
             app:layout_constraintVertical_bias="0.65"
             tools:visibility="visible" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_store"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_store"
             style="@style/Acme.Text.Display.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/medium_margin"
-            android:layout_marginRight="@dimen/medium_margin"
             android:layout_marginBottom="@dimen/medium_margin"
             android:rotation="@integer/rotation_335"
             android:text="@string/act_splash_tv_store"

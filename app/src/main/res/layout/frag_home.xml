@@ -1,55 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray_1"
-    tools:context="com.acmestore.view.activity.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/mt_toolbar"
+    <data />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_container"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@android:color/white" />
+        android:layout_height="match_parent"
+        android:background="@color/gray_1"
+        tools:context="com.acmestore.view.activity.MainActivity">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tl_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/mt_toolbar"
-        app:tabBackground="@color/colorPrimary"
-        app:tabIconTint="@color/tab_inactive"
-        app:tabIndicatorColor="@color/tab_active"
-        app:tabSelectedTextColor="@color/tab_active"
-        app:tabTextColor="@color/tab_inactive">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/t_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/app_name"
+            app:titleTextColor="@android:color/white" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_tabs"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/frag_main_tab_invent" />
+            app:layout_constraintTop_toBottomOf="@+id/t_toolbar"
+            app:tabBackground="@color/colorPrimary"
+            app:tabIconTint="@color/tab_inactive"
+            app:tabIndicatorColor="@color/tab_active"
+            app:tabSelectedTextColor="@color/tab_active"
+            app:tabTextColor="@color/tab_inactive">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/frag_main_tab_shop" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/frag_main_tab_invent" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/frag_main_tab_config" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/frag_main_tab_shop" />
 
-    </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/frag_main_tab_config" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp_pager"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/no_value"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tl_tabs" />
+        </com.google.android.material.tabs.TabLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_pager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/no_value"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tl_tabs" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

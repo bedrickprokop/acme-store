@@ -1,16 +1,21 @@
 package com.acmestore.view.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
+import com.acmestore.Consts
 import com.acmestore.R
-import com.google.android.material.tabs.TabLayout
+import com.acmestore.databinding.FragHomeBinding
+import com.acmestore.model.entity.Product
+import com.acmestore.view.vo.ProductOperation
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 
 private const val INDEX_SHOP = 0
@@ -24,32 +29,72 @@ private val TAB_TITLES = mapOf(
     INDEX_CONFIG to "config"
 )
 
-// Short syntax for fragment creation. Enabled by androidx.navigation:navigation-fragment-ktx dependency
+// TODO Test: short syntax for fragment creation. Enabled by androidx.navigation:navigation-fragment-ktx dependency
 class HomeFragment : Fragment(R.layout.frag_home) {
 
-    private lateinit var viewPager: ViewPager2
+    private lateinit var bind: FragHomeBinding
+    private var product: Product? = null
+    private var resultOperation: ProductOperation? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
+        product = arguments?.getParcelable(Consts.KEY_PRODUCT)
+        resultOperation = arguments?.getParcelable(Consts.KEY_RESULT_OPERATION)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        bind = DataBindingUtil.inflate(inflater, R.layout.frag_home, container, false)
+        return bind.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolbar()
+        setupTabLayout()
+    }
 
-        val toolbar: Toolbar = view.findViewById(R.id.mt_toolbar)
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+    override fun onResume() {
+        super.onResume()
+        showMessage()
+    }
 
-        val tabLayout: TabLayout = view.findViewById(R.id.tl_tabs)
-        viewPager = view.findViewById(R.id.vp_pager)
-        viewPager.adapter = TabsAdapter(childFragmentManager, lifecycle)
+    private fun setupToolbar() {
+        (activity as AppCompatActivity).setSupportActionBar(bind.tToolbar)
+    }
+
+    private fun setupTabLayout() {
+        bind.vpPager.adapter = TabsAdapter(childFragmentManager, lifecycle)
 
         // Connect the tabs and view pager2
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+        TabLayoutMediator(bind.tlTabs, bind.vpPager) { tab, position ->
             tab.text = TAB_TITLES[position]
-            viewPager.setCurrentItem(tab.position, true)
+            bind.vpPager.setCurrentItem(tab.position, true)
         }.attach()
-        tabLayout.getTabAt(INDEX_SHOP)?.let { tabLayout.selectTab(it) }
+        bind.tlTabs.getTabAt(INDEX_SHOP)?.let { bind.tlTabs.selectTab(it) }
+    }
+
+    private fun showMessage() {
+        product?.let {
+            var message: String = Consts.EMPTY
+            when (resultOperation) {
+                ProductOperation.ADD_CART -> message =
+                    getString(R.string.frag_home_operation_shopping_cart_message)
+                ProductOperation.BUY -> {
+                    // TODO
+                }
+                ProductOperation.SELL -> message =
+                    getString(R.string.frag_home_operation_sell_message)
+            }
+            Snackbar.make(
+                bind.clContainer,
+                String.format(message, product?.name),
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
     }
 }
 

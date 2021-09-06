@@ -10,6 +10,14 @@
         android:name="com.acmestore.view.fragment.HomeFragment"
         android:label="frag_home"
         tools:layout="@layout/frag_home">
+        <argument
+            android:name="product"
+            app:argType="com.acmestore.model.entity.Product"
+            app:nullable="true" />
+        <argument
+            android:name="resultOperation"
+            app:argType="com.acmestore.view.vo.ProductOperation"
+            app:nullable="true" />
         <action
             android:id="@+id/nav_home_to_product"
             app:destination="@+id/nav_product"
@@ -25,8 +33,12 @@
             android:name="product"
             app:argType="com.acmestore.model.entity.Product" />
         <argument
-            android:name="operation"
-            app:argType="com.acmestore.view.fragment.Operation" />
+            android:name="actionOperation"
+            app:argType="com.acmestore.view.vo.ProductOperation" />
+        <action
+            android:id="@+id/nav_product_to_home"
+            app:destination="@+id/nav_home"
+            app:enterAnim="@anim/fade_in" />
     </fragment>
 
 </navigation>

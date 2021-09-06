@@ -10,123 +10,130 @@
             type="com.acmestore.viewmodel.ProductViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray_1"
-        tools:context=".view.activity.MainActivity">
+        android:fillViewport="true">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/mt_toolbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/orange_2"
-            android:orientation="vertical"
-            app:contentInsetStart="@dimen/no_value"
-            app:contentInsetStartWithNavigation="@dimen/no_value"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:background="@color/gray_1"
+            tools:context=".view.activity.MainActivity">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/mtv_title"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/t_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/orange_2"
+                android:orientation="vertical"
+                app:contentInsetStart="@dimen/no_value"
+                app:contentInsetStartWithNavigation="@dimen/no_value"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/actv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_margin"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Product Name" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/aciv_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/product_image_height"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_disintegrating_pistol"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/t_toolbar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_name"
+                style="@style/Acme.Text.Display.Smaller"
+                android:layout_width="@dimen/no_value"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_margin"
+                android:maxLines="3"
+                app:layout_constraintEnd_toStartOf="@id/g_divider"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aciv_image"
+                tools:text="Disintegrating pistol" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/g_divider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/medium_margin"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.65" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_price"
+                style="@style/Acme.Text.Display.Smaller"
+                android:layout_width="@dimen/no_value"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_margin"
+                android:gravity="center_vertical|end"
+                android:maxLines="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="@id/g_divider"
+                app:layout_constraintTop_toBottomOf="@+id/aciv_image"
+                tools:text="$150,00" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/actv_description"
+                style="@style/Acme.Text.Font.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_margin"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/actv_name"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/acb_addCart"
+                style="@style/Acme.Button.Primary.Buy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_margin"
+                android:text="@string/frag_product_button_add_cart"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Product Name" />
+                app:layout_constraintVertical_bias="1"
+                tools:text="Add to cart"
+                tools:visibility="visible" />
 
-        </com.google.android.material.appbar.MaterialToolbar>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/acb_sell"
+                style="@style/Acme.Button.Primary.Sell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_margin"
+                android:text="@string/frag_product_button_sell"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1"
+                tools:text="Sell"
+                tools:visibility="gone" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/siv_image"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/product_image_height"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_disintegrating_pistol"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mt_toolbar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_name"
-            style="@style/Acme.Text.Display.Smaller"
-            android:layout_width="@dimen/no_value"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_margin"
-            android:maxLines="3"
-            app:layout_constraintEnd_toStartOf="@id/g_divider"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/siv_image"
-            tools:text="Disintegrating pistol" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/g_divider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.65" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_price"
-            style="@style/Acme.Text.Display.Smaller"
-            android:layout_width="@dimen/no_value"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_margin"
-            android:gravity="center_vertical|end"
-            android:maxLines="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintStart_toStartOf="@id/g_divider"
-            app:layout_constraintTop_toBottomOf="@+id/siv_image"
-            tools:text="$150,00" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_description"
-            style="@style/Acme.Text.Font.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_margin"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mtv_name"
-            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/mb_buy"
-            style="@style/Acme.Button.Primary.Buy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_margin"
-            android:text="@string/frag_product_button_buy"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1"
-            tools:text="Buy"
-            tools:visibility="gone" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/mb_sell"
-            style="@style/Acme.Button.Primary.Sell"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_margin"
-            android:text="@string/frag_product_button_sell"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1"
-            tools:text="Sell"
-            tools:visibility="visible" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

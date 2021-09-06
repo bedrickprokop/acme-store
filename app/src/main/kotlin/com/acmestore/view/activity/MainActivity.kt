@@ -1,9 +1,6 @@
 package com.acmestore.view.activity
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.acmestore.R
 import com.acmestore.databinding.ActMainBinding
@@ -17,7 +14,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.act_main)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    // TODO create an item for shopping cart
+    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
@@ -30,6 +28,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return false
-    }
+    }*/
 
 }

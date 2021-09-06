@@ -44,15 +44,15 @@ class SplashActivity : AppCompatActivity() {
 
         // Setup text version
         val appVersion = getString(R.string.act_splash_tv_version)
-        bind.tvAppVersion.text = String.format(appVersion, BuildConfig.VERSION_NAME)
+        bind.actvAppVersion.text = String.format(appVersion, BuildConfig.VERSION_NAME)
 
         // Logo click action to display version
-        bind.ivLogo.setOnClickListener {
+        bind.acivLogo.setOnClickListener {
             counter++
             when (counter) {
-                THREE_INT -> bind.tvAppVersion.visibility = View.VISIBLE
+                THREE_INT -> bind.actvAppVersion.visibility = View.VISIBLE
                 FOUR_INT -> {
-                    bind.tvAppVersion.visibility = View.INVISIBLE
+                    bind.actvAppVersion.visibility = View.INVISIBLE
                     counter = ZERO_INT
                 }
             }
@@ -63,15 +63,15 @@ class SplashActivity : AppCompatActivity() {
     private fun getUserObserver(): Observer<User> {
         return Observer { _user ->
             // Label button visibility
-            bind.tvComeIn.visibility = View.VISIBLE
+            bind.actvComeIn.visibility = View.VISIBLE
 
             // Label button animator
             val animatorSet = AnimatorInflater.loadAnimator(this, R.animator.text_blink_animator)
-            animatorSet.setTarget(bind.tvComeIn)
+            animatorSet.setTarget(bind.actvComeIn)
             animatorSet.start()
 
             // Label button listener
-            bind.tvComeIn.setOnClickListener {
+            bind.actvComeIn.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putParcelable(KEY_USER, _user)
                 startActivity(Intent(this, MainActivity::class.java).putExtras(bundle))

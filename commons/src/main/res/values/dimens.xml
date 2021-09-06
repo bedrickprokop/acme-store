@@ -32,6 +32,15 @@
     <dimen name="small_radius">15dp</dimen>
     <dimen name="medium_radius">20dp</dimen>
 
+    <!-- Stroke -->
+    <dimen name="smallest_stroke">0.5dp</dimen>
+    <dimen name="smaller_stroke">1dp</dimen>
+    <dimen name="small_stroke">2dp</dimen>
+    <dimen name="medium_stroke">3dp</dimen>
+    <dimen name="big_stroke">4dp</dimen>
+    <dimen name="bigger_stroke">5dp</dimen>
+    <dimen name="biggest_stroke">5.5dp</dimen>
+
     <!-- Elevation -->
     <dimen name="smallest_elevation">2dp</dimen>
     <dimen name="smaller_elevation">4dp</dimen>

@@ -18,6 +18,17 @@ class MockClient : Interceptor {
     val GET_PRODUCTS_RESPONSE =
         """[{"id": 1, "name": "Disintegrating Pistol", "unitPrice": 100.00, "description": "Disintegrating Pistol"},{"id": 2, "name": "Super Speed Vitamins", "unitPrice": 55.10, "description": "Super Speed Vitamins"},{"id": 3, "name": "Jet Propelled Tennis Shoes Fleet Foot", "unitPrice": 988.90, "description": "Jet Propelled Tennis Shoes Fleet Foot"},{"id": 4, "name": "Glass Cutter", "unitPrice": 32.01, "description": "Glass Cutter"}]"""
 
+    val POST_PRODUCT_ADD_CART_ENDPOINT = "/acmestore/product/addcart"
+    val POST_PRODUCT_ADD_CART_RESPONSE =
+        """{"id": 4, "name": "Glass Cutter", "unitPrice": 32.01, "description": "Glass Cutter", "owner": {"id": 1}}"""
+
+    val POST_PRODUCT_BUY_ENDPOINT = "/acmestore/product/buy"
+    val POST_PRODUCT_BUY_RESPONSE = """[2,4,5]"""
+
+    val POST_PRODUCT_SELL_ENDPOINT = "/acmestore/product/sell"
+    val POST_PRODUCT_SELL_RESPONSE =
+        """{"id": 1, "name": "Disintegrating Pistol", "unitPrice": 100.00, "description": "Disintegrating Pistol", "owner": {"id": 1}}"""
+
     val CONTENT_TYPE_KEY = "content-type"
     val CONTENT_TYPE_VALUE = "application/json"
 
@@ -26,6 +37,9 @@ class MockClient : Interceptor {
         val data = when (url.encodedPath) {
             GET_USER_ENDPOINT -> GET_USER_RESPONSE
             GET_PRODUCTS_ENDPOINT -> GET_PRODUCTS_RESPONSE
+            POST_PRODUCT_ADD_CART_ENDPOINT -> POST_PRODUCT_ADD_CART_RESPONSE
+            POST_PRODUCT_BUY_ENDPOINT -> POST_PRODUCT_BUY_RESPONSE
+            POST_PRODUCT_SELL_ENDPOINT -> POST_PRODUCT_SELL_RESPONSE
             else -> Consts.EMPTY
         }
 
@@ -44,7 +58,7 @@ class MockClient : Interceptor {
             .build()
 
         //Create a delay here just for testing the progress on the screen
-        SystemClock.sleep(1500);
+        SystemClock.sleep(500);
 
         return response
     }
