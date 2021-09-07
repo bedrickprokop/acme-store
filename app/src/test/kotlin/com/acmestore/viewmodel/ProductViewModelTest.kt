@@ -35,10 +35,10 @@ class ProductViewModelTest : TestCase() {
     @Test
     public fun addToCart() {
         productViewModel.addToCartObservable(product).observe(getLifecycleOwner(), {
-            assertNotNull(it)
+            assertNotNull(it?.data)
             // Returns id = 4 because the mock in MockClient
             // TODO study how to treat mock and prod in tests
-            assertEquals(4, it.id)
+            assertEquals(4, it?.data?.id)
         })
     }
 
@@ -46,23 +46,24 @@ class ProductViewModelTest : TestCase() {
     public fun buy() {
         val productIds = arrayListOf(1, 3, 4)
         productViewModel.buyObservable(productIds, owner).observe(getLifecycleOwner(), {
-            assertNotNull(it)
+            val idList = it?.data
+            assertNotNull(idList)
             // Returns the mock response
             // TODO study how to treat mock and prod in tests
-            assertEquals(3, it.size)
-            assertEquals(2, it[0])
-            assertEquals(4, it[1])
-            assertEquals(5, it[2])
+            assertEquals(3, idList?.size)
+            assertEquals(2, idList?.get(0))
+            assertEquals(4, idList?.get(1))
+            assertEquals(5, idList?.get(2))
         })
     }
 
     @Test
     public fun sell() {
         productViewModel.sellObservable(product).observe(getLifecycleOwner(), {
-            assertNotNull(it)
+            assertNotNull(it?.data)
             // Returns id = 1 because the mock in MockClient
             // TODO study how to treat mock and prod in tests
-            assertEquals(1, it.id)
+            assertEquals(1, it?.data?.id)
         })
     }
 

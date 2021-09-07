@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.acmestore.R
 import com.acmestore.databinding.FragProductBinding
+import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.Product
 import com.acmestore.model.entity.User
 import com.acmestore.view.vo.ProductOperation
@@ -106,11 +107,22 @@ class ProductFragment : Fragment() {
         }
     }
 
-    private fun addToCartObserver(): Observer<Product> {
+    private fun addToCartObserver(): Observer<in StateData<Product>?> {
         return Observer {
-            findNavController().navigate(
-                ProductFragmentDirections.navProductToHome(it, ProductOperation.ADD_CART)
-            )
+            when (it?.status) {
+                StateData.DataStatus.SUCCESS -> proceedSuccessFlow(it.data!!)
+                else -> proceedErrorFlow(it?.error?.message)
+            }
         }
+    }
+
+    private fun proceedSuccessFlow(product: Product) {
+        findNavController().navigate(
+            ProductFragmentDirections.navProductToHome(product, ProductOperation.ADD_CART)
+        )
+    }
+
+    private fun proceedErrorFlow(message: String?) {
+        // TODO show error message
     }
 }

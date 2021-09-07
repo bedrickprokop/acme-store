@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.acmestore.R
 import com.acmestore.databinding.FragShopBinding
 import com.acmestore.extension.dimenToPx
+import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.Product
 import com.acmestore.view.adapter.ProductListAdapter
 import com.acmestore.view.adapter.SpaceDecoration
@@ -64,13 +65,24 @@ class ShopFragment : Fragment() {
         bind.rvProducts.visibility = View.GONE
     }
 
-    private fun getAllProductsObserver(): Observer<List<Product>> {
+    private fun getAllProductsObserver(): Observer<in StateData<List<Product>>?> {
         return Observer {
-            if (it.isNotEmpty()) {
-                adapter.submitList(it)
-                bind.pbLoading.visibility = View.GONE
-                bind.rvProducts.visibility = View.VISIBLE
+            when (it?.status) {
+                StateData.DataStatus.SUCCESS -> proceedSuccessFlow(it.data!!)
+                else -> proceedErrorFlow(it?.error?.message)
             }
         }
+    }
+
+    private fun proceedSuccessFlow(productList: List<Product>) {
+        if (productList.isNotEmpty()) {
+            adapter.submitList(productList)
+            bind.pbLoading.visibility = View.GONE
+            bind.rvProducts.visibility = View.VISIBLE
+        }
+    }
+
+    private fun proceedErrorFlow(message: String?) {
+        // TODO show error message
     }
 }

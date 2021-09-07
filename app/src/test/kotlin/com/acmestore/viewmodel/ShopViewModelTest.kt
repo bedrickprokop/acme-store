@@ -29,7 +29,7 @@ class ShopViewModelTest : TestCase() {
     @Test
     public fun getAllProducts() {
         shopViewModel.getAllProductsObservable().observe(getLifecycleOwner(), {
-            assertNotNull(it)
+            assertNotNull(it?.data)
         })
     }
 

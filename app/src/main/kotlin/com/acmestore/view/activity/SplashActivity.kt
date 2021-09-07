@@ -16,6 +16,7 @@ import com.acmestore.Consts.THREE_INT
 import com.acmestore.Consts.ZERO_INT
 import com.acmestore.R
 import com.acmestore.databinding.ActSplashBinding
+import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.User
 import com.acmestore.viewmodel.SplashViewModel
 
@@ -60,23 +61,34 @@ class SplashActivity : AppCompatActivity() {
         bind.viewModel?.getUserObservable()?.observe(this, getUserObserver())
     }
 
-    private fun getUserObserver(): Observer<User> {
-        return Observer { _user ->
-            // Label button visibility
-            bind.actvComeIn.visibility = View.VISIBLE
-
-            // Label button animator
-            val animatorSet = AnimatorInflater.loadAnimator(this, R.animator.text_blink_animator)
-            animatorSet.setTarget(bind.actvComeIn)
-            animatorSet.start()
-
-            // Label button listener
-            bind.actvComeIn.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putParcelable(KEY_USER, _user)
-                startActivity(Intent(this, MainActivity::class.java).putExtras(bundle))
+    private fun getUserObserver(): Observer<in StateData<User>?> {
+        return Observer { stateData ->
+            when (stateData?.status) {
+                StateData.DataStatus.SUCCESS -> proceedSuccessFlow(stateData.data!!)
+                else -> proceedErrorFlow(stateData?.error?.message)
             }
         }
+    }
+
+    private fun proceedSuccessFlow(user: User) {
+        // Label button visibility
+        bind.actvComeIn.visibility = View.VISIBLE
+
+        // Label button animator
+        val animatorSet = AnimatorInflater.loadAnimator(this, R.animator.text_blink_animator)
+        animatorSet.setTarget(bind.actvComeIn)
+        animatorSet.start()
+
+        // Label button listener
+        bind.actvComeIn.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable(KEY_USER, user)
+            startActivity(Intent(this, MainActivity::class.java).putExtras(bundle))
+        }
+    }
+
+    private fun proceedErrorFlow(errorMessage: String?) {
+        // TODO show error message
     }
 
 }

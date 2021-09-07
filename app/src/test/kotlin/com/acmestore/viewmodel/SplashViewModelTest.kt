@@ -30,7 +30,7 @@ class SplashViewModelTest : TestCase() {
     @Test
     fun getUserTest() {
         splashViewModel.getUserObservable().observe(getLifecycleOwner(), {
-            assertNotNull(it)
+            assertNotNull(it?.data)
         })
     }
 
