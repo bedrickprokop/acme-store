@@ -1,9 +1,7 @@
 package com.acmestore.model.api
 
 import com.acmestore.model.entity.Product
-import com.acmestore.model.entity.RequestAddCart
-import com.acmestore.model.entity.RequestBuy
-import com.acmestore.model.entity.RequestSell
+import com.acmestore.model.entity.RequestProduct
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -16,11 +14,11 @@ interface ProductApi {
     fun get(@Path("productId") productId: Int, @Query("token") token: String): Call<Product>
 
     @POST("product/addcart")
-    fun addToCart(@Body requestAddCart: RequestAddCart): Call<Product>
+    fun addToCart(@Body requestAddCart: RequestProduct): Call<Product>
 
     @POST("product/buy")
-    fun buy(@Body requestBuy: RequestBuy): Call<List<Int>>
+    fun buy(@Body requestBuy: RequestProduct): Call<List<Int>>
 
     @POST("product/sell")
-    fun sell(@Body requestSell: RequestSell): Call<Product>
+    fun sell(@Body requestSell: RequestProduct): Call<Product>
 }

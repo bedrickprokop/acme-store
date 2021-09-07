@@ -5,6 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.acmestore.model.entity.User
 import junit.framework.TestCase
 import org.junit.Before
 import org.junit.Rule
@@ -29,7 +30,14 @@ class SplashViewModelTest : TestCase() {
 
     @Test
     fun getUserTest() {
-        splashViewModel.getUserObservable().observe(getLifecycleOwner(), {
+        val owner = User(
+            1,
+            "Bedrick Prokop",
+            "bedrick@mymail.com",
+            1000000.00,
+            arrayListOf()
+        )
+        splashViewModel.getUserObservable(owner).observe(getLifecycleOwner(), {
             assertNotNull(it?.data)
         })
     }

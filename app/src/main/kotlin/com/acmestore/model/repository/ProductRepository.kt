@@ -3,7 +3,9 @@ package com.acmestore.model.repository
 import com.acmestore.model.HttpApiGenerator
 import com.acmestore.model.api.ProductApi
 import com.acmestore.model.data.StateLiveData
-import com.acmestore.model.entity.*
+import com.acmestore.model.entity.Product
+import com.acmestore.model.entity.RequestProduct
+import com.acmestore.model.entity.User
 import com.acmestore.model.exception.ApiException
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,27 +31,26 @@ object ProductRepository {
 
     fun addToCart(product: Product, token: String): StateLiveData<Product> {
         val data = StateLiveData<Product>()
-        product.owner?.let {
-            val requestAddCart = RequestAddCart(product.id, product.owner!!.id, token)
-            productApi.addToCart(requestAddCart).enqueue(object : Callback<Product> {
-                override fun onResponse(call: Call<Product>, response: Response<Product>) {
-                    if (response.isSuccessful && response.body() != null) data.postSuccess(response.body()!!)
-                    else data.postError(
-                        ApiException(
-                            "Unexpected exception", response.code(), null, response.errorBody()
-                        )
-                    )
-                }
+        val requestAddCart = RequestProduct(token, product.id)
 
-                override fun onFailure(call: Call<Product>, t: Throwable) = data.postError(t)
-            })
-        }
+        productApi.addToCart(requestAddCart).enqueue(object : Callback<Product> {
+            override fun onResponse(call: Call<Product>, response: Response<Product>) {
+                if (response.isSuccessful && response.body() != null) data.postSuccess(response.body()!!)
+                else data.postError(
+                    ApiException(
+                        "Unexpected exception", response.code(), null, response.errorBody()
+                    )
+                )
+            }
+
+            override fun onFailure(call: Call<Product>, t: Throwable) = data.postError(t)
+        })
         return data
     }
 
     fun buy(productIds: List<Int>, owner: User, token: String): StateLiveData<List<Int>> {
         val data = StateLiveData<List<Int>>()
-        val requestBuy = RequestBuy(productIds, owner.id, token)
+        val requestBuy = RequestProduct(token, null, productIds)
 
         productApi.buy(requestBuy).enqueue(object : Callback<List<Int>> {
             override fun onResponse(call: Call<List<Int>>, response: Response<List<Int>>) {
@@ -68,22 +69,20 @@ object ProductRepository {
 
     fun sell(product: Product, token: String): StateLiveData<Product> {
         val data = StateLiveData<Product>()
-        product.owner?.let {
-            val requestSell = RequestSell(product.id, product.owner!!.id, token)
+        val requestSell = RequestProduct(token, product.id)
 
-            productApi.sell(requestSell).enqueue(object : Callback<Product> {
-                override fun onResponse(call: Call<Product>, response: Response<Product>) {
-                    if (response.isSuccessful && response.body() != null) data.postSuccess(response.body()!!)
-                    else data.postError(
-                        ApiException(
-                            "Unexpected exception", response.code(), null, response.errorBody()
-                        )
+        productApi.sell(requestSell).enqueue(object : Callback<Product> {
+            override fun onResponse(call: Call<Product>, response: Response<Product>) {
+                if (response.isSuccessful && response.body() != null) data.postSuccess(response.body()!!)
+                else data.postError(
+                    ApiException(
+                        "Unexpected exception", response.code(), null, response.errorBody()
                     )
-                }
+                )
+            }
 
-                override fun onFailure(call: Call<Product>, t: Throwable) = data.postError(t)
-            })
-        }
+            override fun onFailure(call: Call<Product>, t: Throwable) = data.postError(t)
+        })
         return data
     }
 }

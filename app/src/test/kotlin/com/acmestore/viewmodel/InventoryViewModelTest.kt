@@ -5,6 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.acmestore.model.entity.User
 import junit.framework.TestCase
 import org.junit.Before
 import org.junit.Rule
@@ -14,21 +15,28 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito
 
 @RunWith(AndroidJUnit4::class)
-class ShopViewModelTest : TestCase() {
+class InventoryViewModelTest : TestCase() {
 
     @get: Rule
     val rule: TestRule = InstantTaskExecutorRule()
 
-    private lateinit var shopViewModel: ShopViewModel
+    private lateinit var inventoryViewModel: InventoryViewModel
 
     @Before
     public override fun setUp() {
-        shopViewModel = ShopViewModel()
+        inventoryViewModel = InventoryViewModel()
     }
 
     @Test
-    fun getAllProducts() {
-        shopViewModel.getAllProductsObservable().observe(getLifecycleOwner(), {
+    fun getInventory() {
+        val owner = User(
+            1,
+            "Bedrick Prokop",
+            "bedrick@mymail.com",
+            1000000.00,
+            arrayListOf()
+        )
+        inventoryViewModel.getInventoryObservable(owner).observe(getLifecycleOwner(), {
             assertNotNull(it?.data)
         })
     }

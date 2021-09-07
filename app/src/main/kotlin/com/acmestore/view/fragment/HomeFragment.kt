@@ -66,10 +66,29 @@ class HomeFragment : Fragment() {
         bind.vpPager.adapter = TabsAdapter(childFragmentManager, lifecycle)
 
         // Connect the tabs and view pager2
-        TabLayoutMediator(bind.tlTabs, bind.vpPager) { tab, position ->
+        val tabLayoutMediator = TabLayoutMediator(bind.tlTabs, bind.vpPager) { tab, position ->
             tab.text = TAB_TITLES[position]
             bind.vpPager.setCurrentItem(tab.position, true)
-        }.attach()
+        }
+        tabLayoutMediator.attach()
+
+        // TODO Analise TabLayoutMediator
+        /*args.resultOperation?.let {
+            when (it) {
+                ProductOperation.ADD_CART -> {
+                    bind.tlTabs.getTabAt(INDEX_SHOP)?.select()
+                    bind.vpPager.currentItem = INDEX_SHOP
+                }
+                ProductOperation.BUY -> {
+                    bind.tlTabs.getTabAt(INDEX_SHOP)?.select()
+                    bind.vpPager.currentItem = INDEX_SHOP
+                }
+                ProductOperation.SELL -> {
+                    bind.tlTabs.getTabAt(INDEX_INVENTORY)?.select()
+                    bind.vpPager.currentItem = INDEX_INVENTORY
+                }
+            }
+        } ?: */
         bind.tlTabs.getTabAt(INDEX_SHOP)?.let { bind.tlTabs.selectTab(it) }
     }
 

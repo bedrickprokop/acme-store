@@ -52,8 +52,6 @@ class SplashActivityTest {
 
         acivLogo.performClick()
 
-        //You might need a shadowOf(getMainLooper()).idle() call.
-        //shadowOf(Looper.getMainLooper()).idle()
         assertEquals(View.INVISIBLE, actvVersion.visibility)
     }
 

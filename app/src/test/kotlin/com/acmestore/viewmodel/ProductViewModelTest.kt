@@ -33,7 +33,7 @@ class ProductViewModelTest : TestCase() {
     }
 
     @Test
-    public fun addToCart() {
+    fun addToCart() {
         productViewModel.addToCartObservable(product).observe(getLifecycleOwner(), {
             assertNotNull(it?.data)
             // Returns id = 4 because the mock in MockClient
@@ -43,7 +43,7 @@ class ProductViewModelTest : TestCase() {
     }
 
     @Test
-    public fun buy() {
+    fun buy() {
         val productIds = arrayListOf(1, 3, 4)
         productViewModel.buyObservable(productIds, owner).observe(getLifecycleOwner(), {
             val idList = it?.data
@@ -58,7 +58,7 @@ class ProductViewModelTest : TestCase() {
     }
 
     @Test
-    public fun sell() {
+    fun sell() {
         productViewModel.sellObservable(product).observe(getLifecycleOwner(), {
             assertNotNull(it?.data)
             // Returns id = 1 because the mock in MockClient

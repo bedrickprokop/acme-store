@@ -2,10 +2,10 @@ package com.acmestore.model.repository
 
 import com.acmestore.model.HttpApiGenerator
 import com.acmestore.model.api.UserApi
-import com.acmestore.model.exception.ApiException
 import com.acmestore.model.data.StateLiveData
 import com.acmestore.model.entity.Product
 import com.acmestore.model.entity.User
+import com.acmestore.model.exception.ApiException
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,10 +32,10 @@ object UserRepository {
         return data
     }
 
-    fun getProducts(user: User, token: String): StateLiveData<List<Product>> {
+    fun getInventory(user: User, token: String): StateLiveData<List<Product>> {
         val data = StateLiveData<List<Product>>()
 
-        userApi.getProducts(user.id, token).enqueue(object : Callback<List<Product>> {
+        userApi.getInventory(user.id, token).enqueue(object : Callback<List<Product>> {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
                 if (response.isSuccessful && response.body() != null) data.postSuccess(response.body()!!)
                 else data.postSuccess(arrayListOf())

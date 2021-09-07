@@ -13,7 +13,6 @@ import com.acmestore.R
 import com.acmestore.databinding.FragProductBinding
 import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.Product
-import com.acmestore.model.entity.User
 import com.acmestore.view.vo.ProductOperation
 import com.acmestore.viewmodel.ProductViewModel
 
@@ -83,15 +82,6 @@ class ProductFragment : Fragment() {
             ProductOperation.ADD_CART -> {
                 bind.acbAddCart.visibility = View.VISIBLE
                 bind.acbAddCart.setOnClickListener {
-
-                    // TODO add current user to product
-                    args.product.owner = User(
-                        1,
-                        "Bedrick Prokop",
-                        "bedrick@mymail.com",
-                        1000000.00,
-                        arrayListOf()
-                    )
                     bind.viewModel?.addToCartObservable(args.product)
                         ?.observe(requireActivity(), addToCartObserver())
                 }
@@ -99,9 +89,8 @@ class ProductFragment : Fragment() {
             ProductOperation.SELL -> {
                 bind.acbSell.visibility = View.VISIBLE
                 bind.acbSell.setOnClickListener {
-                    // TODO create sell functionality
-                    //product?.owner = null
-                    //ProductFragmentDirections.natProductToHome()
+                    bind.viewModel?.sellObservable(args.product)
+                        ?.observe(requireActivity(), sellObserver())
                 }
             }
         }
@@ -116,9 +105,18 @@ class ProductFragment : Fragment() {
         }
     }
 
+    private fun sellObserver(): Observer<in StateData<Product>?> {
+        return Observer {
+            when (it?.status) {
+                StateData.DataStatus.SUCCESS -> proceedSuccessFlow(it.data!!)
+                else -> proceedErrorFlow(it?.error?.message)
+            }
+        }
+    }
+
     private fun proceedSuccessFlow(product: Product) {
         findNavController().navigate(
-            ProductFragmentDirections.navProductToHome(product, ProductOperation.ADD_CART)
+            ProductFragmentDirections.navProductToHome(product, args.actionOperation)
         )
     }
 

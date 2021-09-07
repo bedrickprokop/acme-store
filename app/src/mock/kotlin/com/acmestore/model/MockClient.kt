@@ -14,6 +14,10 @@ class MockClient : Interceptor {
     val GET_USER_RESPONSE =
         """{"id":1,"name":"Bedrick Prokop","email":"bedrick@mymail.com", "money": 1000000.00, "products":[]}"""
 
+    val GET_USER_INVENTORY_ENDPOINT = "/acmestore/user/1/inventory/CD344689F90"
+    val GET_USER_INVENTORY_RESPONSE =
+        """[{"id": 1, "name": "Disintegrating Pistol", "unitPrice": 100.00, "description": "Disintegrating Pistol"},{"id": 2, "name": "Super Speed Vitamins", "unitPrice": 55.10, "description": "Super Speed Vitamins"}]"""
+
     val GET_PRODUCTS_ENDPOINT = "/acmestore/product/CD344689F90"
     val GET_PRODUCTS_RESPONSE =
         """[{"id": 1, "name": "Disintegrating Pistol", "unitPrice": 100.00, "description": "Disintegrating Pistol"},{"id": 2, "name": "Super Speed Vitamins", "unitPrice": 55.10, "description": "Super Speed Vitamins"},{"id": 3, "name": "Jet Propelled Tennis Shoes Fleet Foot", "unitPrice": 988.90, "description": "Jet Propelled Tennis Shoes Fleet Foot"},{"id": 4, "name": "Glass Cutter", "unitPrice": 32.01, "description": "Glass Cutter"}]"""
@@ -36,6 +40,7 @@ class MockClient : Interceptor {
         val url = chain.request().url
         val data = when (url.encodedPath) {
             GET_USER_ENDPOINT -> GET_USER_RESPONSE
+            GET_USER_INVENTORY_ENDPOINT -> GET_USER_INVENTORY_RESPONSE
             GET_PRODUCTS_ENDPOINT -> GET_PRODUCTS_RESPONSE
             POST_PRODUCT_ADD_CART_ENDPOINT -> POST_PRODUCT_ADD_CART_RESPONSE
             POST_PRODUCT_BUY_ENDPOINT -> POST_PRODUCT_BUY_RESPONSE

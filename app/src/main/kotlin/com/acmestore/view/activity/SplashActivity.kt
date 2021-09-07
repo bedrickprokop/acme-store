@@ -58,7 +58,16 @@ class SplashActivity : AppCompatActivity() {
                 }
             }
         }
-        bind.viewModel?.getUserObservable()?.observe(this, getUserObserver())
+
+        // TODO check if user exists in localstorage else find it in api service
+        val owner = User(
+            1,
+            "Bedrick Prokop",
+            "bedrick@mymail.com",
+            1000000.00,
+            arrayListOf()
+        )
+        bind.viewModel?.getUserObservable(owner)?.observe(this, getUserObserver())
     }
 
     private fun getUserObserver(): Observer<in StateData<User>?> {
