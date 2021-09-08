@@ -5,10 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.library.BuildConfig
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.acmestore.Consts.FOUR_INT
 import com.acmestore.Consts.KEY_USER
@@ -16,13 +18,25 @@ import com.acmestore.Consts.THREE_INT
 import com.acmestore.Consts.ZERO_INT
 import com.acmestore.R
 import com.acmestore.databinding.ActSplashBinding
+import com.acmestore.model.HttpApiGenerator
+import com.acmestore.model.api.UserApi
 import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.User
+import com.acmestore.model.repository.impl.UserRepositoryImpl
 import com.acmestore.viewmodel.SplashViewModel
 
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var bind: ActSplashBinding
+    private val splashViewModel by viewModels<SplashViewModel> {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                val userApi = HttpApiGenerator<UserApi>().get(UserApi::class.java)
+                val userRepository = UserRepositoryImpl(userApi)
+                return SplashViewModel(userRepository) as T
+            }
+        }
+    }
     private var counter: Int = ZERO_INT
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +55,7 @@ class SplashActivity : AppCompatActivity() {
 
         // Inflate layout and viewModel setup
         bind = DataBindingUtil.setContentView(this, R.layout.act_splash)
-        bind.viewModel = ViewModelProvider(this)[SplashViewModel::class.java]
+        bind.viewModel = splashViewModel
 
         // Setup text version
         val appVersion = getString(R.string.act_splash_tv_version)

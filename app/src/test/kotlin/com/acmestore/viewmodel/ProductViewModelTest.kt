@@ -5,8 +5,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.acmestore.model.HttpApiGenerator
+import com.acmestore.model.api.ProductApi
 import com.acmestore.model.entity.Product
 import com.acmestore.model.entity.User
+import com.acmestore.model.repository.impl.ProductRepositoryImpl
 import junit.framework.TestCase
 import org.junit.Before
 import org.junit.Rule
@@ -27,7 +30,10 @@ class ProductViewModelTest : TestCase() {
 
     @Before
     public override fun setUp() {
-        productViewModel = ProductViewModel()
+        val productApi = HttpApiGenerator<ProductApi>().get(ProductApi::class.java)
+        val productRepository = ProductRepositoryImpl(productApi)
+        productViewModel = ProductViewModel(productRepository)
+
         owner = User(1, null, null, 10000.32, null)
         product = Product(1, "Boomerang", 33.45, null, null, owner)
     }

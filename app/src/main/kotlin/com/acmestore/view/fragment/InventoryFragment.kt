@@ -6,16 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acmestore.R
 import com.acmestore.databinding.FragInventoryBinding
 import com.acmestore.extension.dimenToPx
+import com.acmestore.model.HttpApiGenerator
+import com.acmestore.model.api.UserApi
 import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.Product
 import com.acmestore.model.entity.User
+import com.acmestore.model.repository.impl.UserRepositoryImpl
 import com.acmestore.view.adapter.ProductListAdapter
 import com.acmestore.view.adapter.SpaceDecoration
 import com.acmestore.view.vo.ProductOperation
@@ -24,6 +29,15 @@ import com.acmestore.viewmodel.InventoryViewModel
 class InventoryFragment : Fragment() {
 
     private lateinit var bind: FragInventoryBinding
+    private val userViewModel by viewModels<InventoryViewModel> {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                val userApi = HttpApiGenerator<UserApi>().get(UserApi::class.java)
+                val userRepository = UserRepositoryImpl(userApi)
+                return InventoryViewModel(userRepository) as T
+            }
+        }
+    }
     private val adapter: ProductListAdapter by lazy {
         ProductListAdapter(requireActivity()) {
             findNavController().navigate(
@@ -40,7 +54,7 @@ class InventoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         bind = DataBindingUtil.inflate(inflater, R.layout.frag_inventory, container, false)
-        bind.viewModel = ViewModelProvider(requireActivity()).get(InventoryViewModel::class.java)
+        bind.viewModel = userViewModel
         return bind.root
     }
 

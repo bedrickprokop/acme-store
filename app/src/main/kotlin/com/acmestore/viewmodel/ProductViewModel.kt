@@ -7,9 +7,7 @@ import com.acmestore.model.entity.Product
 import com.acmestore.model.entity.User
 import com.acmestore.model.repository.ProductRepository
 
-class ProductViewModel : ViewModel() {
-
-    private val productRepository: ProductRepository = ProductRepository
+class ProductViewModel(private val productRepository: ProductRepository) : ViewModel() {
 
     fun addToCartObservable(product: Product): StateLiveData<Product> =
         productRepository.addToCart(product, Consts.TOKEN)

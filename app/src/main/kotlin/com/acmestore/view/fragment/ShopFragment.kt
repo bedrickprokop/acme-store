@@ -6,15 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acmestore.R
 import com.acmestore.databinding.FragShopBinding
 import com.acmestore.extension.dimenToPx
+import com.acmestore.model.HttpApiGenerator
+import com.acmestore.model.api.ProductApi
 import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.Product
+import com.acmestore.model.repository.impl.ProductRepositoryImpl
 import com.acmestore.view.adapter.ProductListAdapter
 import com.acmestore.view.adapter.SpaceDecoration
 import com.acmestore.view.vo.ProductOperation
@@ -23,6 +28,16 @@ import com.acmestore.viewmodel.ShopViewModel
 class ShopFragment : Fragment() {
 
     private lateinit var bind: FragShopBinding
+
+    private val shopViewModel by viewModels<ShopViewModel> {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                val productApi = HttpApiGenerator<ProductApi>().get(ProductApi::class.java)
+                val productRepository = ProductRepositoryImpl(productApi)
+                return ShopViewModel(productRepository) as T
+            }
+        }
+    }
 
     private val adapter: ProductListAdapter by lazy {
         ProductListAdapter(requireActivity()) {
@@ -42,7 +57,7 @@ class ShopFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         bind = DataBindingUtil.inflate(inflater, R.layout.frag_shop, container, false)
-        bind.viewModel = ViewModelProvider(requireActivity()).get(ShopViewModel::class.java)
+        bind.viewModel = shopViewModel
         return bind.root
     }
 

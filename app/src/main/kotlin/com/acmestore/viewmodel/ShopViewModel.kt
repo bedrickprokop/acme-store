@@ -6,11 +6,8 @@ import com.acmestore.model.data.StateLiveData
 import com.acmestore.model.entity.Product
 import com.acmestore.model.repository.ProductRepository
 
-class ShopViewModel : ViewModel() {
-
-    private val productRepository: ProductRepository = ProductRepository
+class ShopViewModel(private val productRepository: ProductRepository) : ViewModel() {
 
     fun getAllProductsObservable(): StateLiveData<List<Product>> =
         productRepository.getAll(Consts.TOKEN)
-
 }

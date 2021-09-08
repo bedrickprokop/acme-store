@@ -5,20 +5,34 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.acmestore.R
 import com.acmestore.databinding.FragProductBinding
+import com.acmestore.model.HttpApiGenerator
+import com.acmestore.model.api.ProductApi
 import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.Product
+import com.acmestore.model.repository.impl.ProductRepositoryImpl
 import com.acmestore.view.vo.ProductOperation
 import com.acmestore.viewmodel.ProductViewModel
 
 class ProductFragment : Fragment() {
 
     private lateinit var bind: FragProductBinding
+    private val productViewModel by viewModels<ProductViewModel> {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                val productApi = HttpApiGenerator<ProductApi>().get(ProductApi::class.java)
+                val productRepository = ProductRepositoryImpl(productApi)
+                return ProductViewModel(productRepository) as T
+            }
+        }
+    }
     private val args: ProductFragmentArgs by navArgs()
 
     // Here you can assign variables get intent extras and anything else that doesn't involve the
@@ -32,7 +46,7 @@ class ProductFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         bind = DataBindingUtil.inflate(inflater, R.layout.frag_product, container, false)
-        bind.viewModel = ViewModelProvider(requireActivity()).get(ProductViewModel::class.java)
+        bind.viewModel = productViewModel
         return bind.root
     }
 

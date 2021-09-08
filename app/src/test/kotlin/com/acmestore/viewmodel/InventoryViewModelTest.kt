@@ -5,7 +5,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.acmestore.model.HttpApiGenerator
+import com.acmestore.model.api.UserApi
 import com.acmestore.model.entity.User
+import com.acmestore.model.repository.impl.UserRepositoryImpl
 import junit.framework.TestCase
 import org.junit.Before
 import org.junit.Rule
@@ -24,7 +27,9 @@ class InventoryViewModelTest : TestCase() {
 
     @Before
     public override fun setUp() {
-        inventoryViewModel = InventoryViewModel()
+        val userApi = HttpApiGenerator<UserApi>().get(UserApi::class.java)
+        val userRepository = UserRepositoryImpl(userApi)
+        inventoryViewModel = InventoryViewModel(userRepository)
     }
 
     @Test

@@ -7,9 +7,7 @@ import com.acmestore.model.entity.Product
 import com.acmestore.model.entity.User
 import com.acmestore.model.repository.UserRepository
 
-class InventoryViewModel : ViewModel() {
-
-    private val userRepository: UserRepository = UserRepository
+class InventoryViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     fun getInventoryObservable(owner: User): StateLiveData<List<Product>> =
         userRepository.getInventory(owner, Consts.TOKEN)

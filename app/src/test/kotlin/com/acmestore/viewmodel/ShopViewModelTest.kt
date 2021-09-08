@@ -5,6 +5,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.acmestore.model.HttpApiGenerator
+import com.acmestore.model.api.ProductApi
+import com.acmestore.model.repository.impl.ProductRepositoryImpl
 import junit.framework.TestCase
 import org.junit.Before
 import org.junit.Rule
@@ -23,7 +26,9 @@ class ShopViewModelTest : TestCase() {
 
     @Before
     public override fun setUp() {
-        shopViewModel = ShopViewModel()
+        val productApi = HttpApiGenerator<ProductApi>().get(ProductApi::class.java)
+        val productRepository = ProductRepositoryImpl(productApi)
+        shopViewModel = ShopViewModel(productRepository)
     }
 
     @Test
