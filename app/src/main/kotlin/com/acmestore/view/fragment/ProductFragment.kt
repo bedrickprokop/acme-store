@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -15,7 +14,6 @@ import com.acmestore.R
 import com.acmestore.databinding.FragProductBinding
 import com.acmestore.model.HttpApiGenerator
 import com.acmestore.model.api.ProductApi
-import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.Product
 import com.acmestore.model.repository.impl.ProductRepositoryImpl
 import com.acmestore.view.vo.ProductOperation
@@ -47,6 +45,9 @@ class ProductFragment : Fragment() {
     ): View {
         bind = DataBindingUtil.inflate(inflater, R.layout.frag_product, container, false)
         bind.viewModel = productViewModel
+        productViewModel.addToCartObservable.observe(requireActivity(), { showSuccess(it) })
+        productViewModel.sellObservable.observe(requireActivity(), { showSuccess(it) })
+        productViewModel.errorObservable.observe(requireActivity(), { showError(it) })
         return bind.root
     }
 
@@ -95,46 +96,22 @@ class ProductFragment : Fragment() {
         when (args.actionOperation) {
             ProductOperation.ADD_CART -> {
                 bind.acbAddCart.visibility = View.VISIBLE
-                bind.acbAddCart.setOnClickListener {
-                    bind.viewModel?.addToCartObservable(args.product)
-                        ?.observe(requireActivity(), addToCartObserver())
-                }
+                bind.acbAddCart.setOnClickListener { bind.viewModel?.addToCart(args.product) }
             }
             ProductOperation.SELL -> {
                 bind.acbSell.visibility = View.VISIBLE
-                bind.acbSell.setOnClickListener {
-                    bind.viewModel?.sellObservable(args.product)
-                        ?.observe(requireActivity(), sellObserver())
-                }
+                bind.acbSell.setOnClickListener { bind.viewModel?.sell(args.product) }
             }
         }
     }
 
-    private fun addToCartObserver(): Observer<in StateData<Product>?> {
-        return Observer {
-            when (it?.status) {
-                StateData.DataStatus.SUCCESS -> proceedSuccessFlow(it.data!!)
-                else -> proceedErrorFlow(it?.error?.message)
-            }
-        }
-    }
-
-    private fun sellObserver(): Observer<in StateData<Product>?> {
-        return Observer {
-            when (it?.status) {
-                StateData.DataStatus.SUCCESS -> proceedSuccessFlow(it.data!!)
-                else -> proceedErrorFlow(it?.error?.message)
-            }
-        }
-    }
-
-    private fun proceedSuccessFlow(product: Product) {
+    private fun showSuccess(product: Product) {
         findNavController().navigate(
             ProductFragmentDirections.navProductToHome(product, args.actionOperation)
         )
     }
 
-    private fun proceedErrorFlow(message: String?) {
+    private fun showError(message: String?) {
         // TODO show error message
     }
 }

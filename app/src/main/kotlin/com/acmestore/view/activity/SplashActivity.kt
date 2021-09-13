@@ -9,7 +9,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.library.BuildConfig
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.acmestore.Consts.FOUR_INT
@@ -20,7 +19,6 @@ import com.acmestore.R
 import com.acmestore.databinding.ActSplashBinding
 import com.acmestore.model.HttpApiGenerator
 import com.acmestore.model.api.UserApi
-import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.User
 import com.acmestore.model.repository.impl.UserRepositoryImpl
 import com.acmestore.viewmodel.SplashViewModel
@@ -72,7 +70,8 @@ class SplashActivity : AppCompatActivity() {
                 }
             }
         }
-
+        bind.viewModel?.userObservable?.observe(this, { showButtonEnter(it) })
+        bind.viewModel?.errorObservable?.observe(this, { showError(it) })
         // TODO check if user exists in localstorage else find it in api service
         val owner = User(
             1,
@@ -81,19 +80,10 @@ class SplashActivity : AppCompatActivity() {
             1000000.00,
             arrayListOf()
         )
-        bind.viewModel?.getUserObservable(owner)?.observe(this, getUserObserver())
+        bind.viewModel?.getUser(owner)
     }
 
-    private fun getUserObserver(): Observer<in StateData<User>?> {
-        return Observer { stateData ->
-            when (stateData?.status) {
-                StateData.DataStatus.SUCCESS -> proceedSuccessFlow(stateData.data!!)
-                else -> proceedErrorFlow(stateData?.error?.message)
-            }
-        }
-    }
-
-    private fun proceedSuccessFlow(user: User) {
+    private fun showButtonEnter(user: User) {
         // Label button visibility
         bind.actvComeIn.visibility = View.VISIBLE
 
@@ -110,8 +100,7 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun proceedErrorFlow(errorMessage: String?) {
+    private fun showError(errorMessage: String?) {
         // TODO show error message
     }
-
 }

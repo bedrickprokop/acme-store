@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,7 +16,6 @@ import com.acmestore.databinding.FragShopBinding
 import com.acmestore.extension.dimenToPx
 import com.acmestore.model.HttpApiGenerator
 import com.acmestore.model.api.ProductApi
-import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.Product
 import com.acmestore.model.repository.impl.ProductRepositoryImpl
 import com.acmestore.view.adapter.ProductListAdapter
@@ -70,8 +68,9 @@ class ShopFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        bind.viewModel?.getAllProductsObservable()
-            ?.observe(requireActivity(), getAllProductsObserver())
+        bind.viewModel?.allProductsObservable?.observe(requireActivity(), { showAllProducts(it) })
+        bind.viewModel?.errorObservable?.observe(requireActivity(), { showError(it) })
+        bind.viewModel?.getAllProducts()
     }
 
     override fun onPause() {
@@ -80,16 +79,7 @@ class ShopFragment : Fragment() {
         bind.rvProducts.visibility = View.GONE
     }
 
-    private fun getAllProductsObserver(): Observer<in StateData<List<Product>>?> {
-        return Observer {
-            when (it?.status) {
-                StateData.DataStatus.SUCCESS -> proceedSuccessFlow(it.data!!)
-                else -> proceedErrorFlow(it?.error?.message)
-            }
-        }
-    }
-
-    private fun proceedSuccessFlow(productList: List<Product>) {
+    private fun showAllProducts(productList: List<Product>) {
         if (productList.isNotEmpty()) {
             adapter.submitList(productList)
             bind.pbLoading.visibility = View.GONE
@@ -97,7 +87,7 @@ class ShopFragment : Fragment() {
         }
     }
 
-    private fun proceedErrorFlow(message: String?) {
+    private fun showError(message: String?) {
         // TODO show error message
     }
 }

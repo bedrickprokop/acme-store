@@ -12,3 +12,12 @@ data class Product(
     val pictureUrl: String?,
     var owner: User?
 ) : Parcelable
+
+@Parcelize
+data class User(
+    val id: Int,
+    var name: String?,
+    var email: String?,
+    var money: Double,
+    var products: List<Product>?
+) : Parcelable

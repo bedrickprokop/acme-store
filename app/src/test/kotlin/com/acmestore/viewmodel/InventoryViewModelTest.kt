@@ -41,8 +41,10 @@ class InventoryViewModelTest : TestCase() {
             1000000.00,
             arrayListOf()
         )
-        inventoryViewModel.getInventoryObservable(owner).observe(getLifecycleOwner(), {
-            assertNotNull(it?.data)
+
+        inventoryViewModel.getInventory(owner)
+        inventoryViewModel.inventoryObservable.observe(getLifecycleOwner(), {
+            assertNotNull(it)
         })
     }
 

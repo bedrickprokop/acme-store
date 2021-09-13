@@ -42,8 +42,9 @@ class SplashViewModelTest : TestCase() {
             1000000.00,
             arrayListOf()
         )
-        splashViewModel.getUserObservable(owner).observe(getLifecycleOwner(), {
-            assertNotNull(it?.data)
+        splashViewModel.getUser(owner)
+        splashViewModel.userObservable.observe(getLifecycleOwner(), {
+            assertNotNull(it)
         })
     }
 

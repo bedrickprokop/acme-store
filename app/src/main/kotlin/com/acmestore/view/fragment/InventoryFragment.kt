@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,7 +16,6 @@ import com.acmestore.databinding.FragInventoryBinding
 import com.acmestore.extension.dimenToPx
 import com.acmestore.model.HttpApiGenerator
 import com.acmestore.model.api.UserApi
-import com.acmestore.model.data.StateData
 import com.acmestore.model.entity.Product
 import com.acmestore.model.entity.User
 import com.acmestore.model.repository.impl.UserRepositoryImpl
@@ -67,6 +65,8 @@ class InventoryFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        bind.viewModel?.inventoryObservable?.observe(requireActivity(), { showInventory(it) })
+        bind.viewModel?.errorObservable?.observe(requireActivity(), { showError(it) })
         // TODO check if user exists in localstorage else find it in api service
         val owner = User(
             1,
@@ -75,8 +75,7 @@ class InventoryFragment : Fragment() {
             1000000.00,
             arrayListOf()
         )
-        bind.viewModel?.getInventoryObservable(owner)
-            ?.observe(requireActivity(), getInventoryObserver())
+        bind.viewModel?.getInventory(owner)
     }
 
     override fun onPause() {
@@ -85,16 +84,7 @@ class InventoryFragment : Fragment() {
         bind.rvInventory.visibility = View.GONE
     }
 
-    private fun getInventoryObserver(): Observer<in StateData<List<Product>>?> {
-        return Observer {
-            when (it?.status) {
-                StateData.DataStatus.SUCCESS -> proceedSuccessFlow(it.data!!)
-                else -> proceedErrorFlow(it?.error?.message)
-            }
-        }
-    }
-
-    private fun proceedSuccessFlow(inventoryList: List<Product>) {
+    private fun showInventory(inventoryList: List<Product>) {
         if (inventoryList.isNotEmpty()) {
             adapter.submitList(inventoryList)
             bind.pbLoading.visibility = View.GONE
@@ -102,7 +92,7 @@ class InventoryFragment : Fragment() {
         }
     }
 
-    private fun proceedErrorFlow(message: String?) {
+    private fun showError(message: String?) {
         // TODO show error message
     }
 }
