@@ -1,3 +1,4 @@
 rootProject.name = "ACME Store"
 include ':app'
 include ':commons'
+include ':play'
